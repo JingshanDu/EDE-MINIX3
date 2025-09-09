@@ -1,0 +1,87 @@
+#
+# $Id: Jamconfig.in 3390 2012-08-23 02:10:46Z karijes $
+#
+# Copyright (c) 2005-2007 edelib authors
+#
+# This library is free software; you can redistribute it and/or
+# modify it under the terms of the GNU Lesser General Public
+# License as published by the Free Software Foundation; either
+# version 2 of the License, or (at your option) any later version.
+#
+# This library is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this library. If not, see <http://www.gnu.org/licenses/>.
+
+# directories
+if $(DESTDIR) {
+	prefix ?= "$(DESTDIR)/usr/local" ;
+} else {
+	prefix ?= "/usr/local" ;
+}
+
+exec_prefix ?= "$(prefix)" ;
+datarootdir ?= "$(prefix)/share" ;
+bindir      ?= "$(exec_prefix)/bin" ;
+datadir     ?= "$(datarootdir)" ;
+docdir      ?= "$(datarootdir)/doc" ;
+includedir  ?= "$(prefix)/include" ;
+libdir      ?= "$(exec_prefix)/lib" ;
+mandir      ?= "$(datarootdir)/man" ;
+localedir   ?= "$(datarootdir)/locale" ;
+srcdir      ?= "/root/edelib-2.1" ;
+sysconfdir  ?= "$(prefix)/etc" ;
+
+# programs
+CC       = "cc" ;
+C++      = "c++" ;
+LINK     = $(CC) ;
+DOXYGEN  = "" ;
+XGETTEXT = "" ;
+MSGFMT   = "" ;
+SED      = "/usr/bin/sed" ;
+
+# general flags and libraries
+CFLAGS   ?= "-DHAVE_CONFIG_H  -O2  -Wall -pedantic -Wshadow -Wno-variadic-macros" ;
+CXXFLAGS ?= " -DHAVE_CONFIG_H  -O2  -Wall -pedantic -Wshadow -Wno-variadic-macros" ;
+LDFLAGS  ?= "" ;
+LIBS     ?= "" ;
+
+# standard C++ library we link with; for now is gcc's default, but user can override it from shell
+STDLIB   ?= -lstdc++ ;
+
+# for fltk and X11
+FLTK_CFLAGS    ?= "-I/usr/pkg/include -I/usr/X11R7/include/freetype2 -O2 -march=i586 -I/usr/pkg/include -I/usr/X11R7/include -I/usr/X11R7/include/libdrm -I/usr/X11R7/include/freetype2 -I/usr/X11R7/include -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT" ;
+FLTK_CXXFLAGS  ?= "$(FLTK_CFLAGS)" ;
+FLTK_LIBS      ?= "-L/usr/pkg/lib -L/usr/X11R7/lib -L/usr/X11R7/lib -Wl,-R/usr/X11R7/lib -Wl,-R/usr/pkg/lib -lfltk -lXcursor -lXfixes -lXext -lXft -lfontconfig -lXinerama -lpthread -lm -lX11  " ;
+FLTK_LIBS_FULL ?= "-L/usr/pkg/lib -L/usr/X11R7/lib -L/usr/X11R7/lib -Wl,-R/usr/X11R7/lib -Wl,-R/usr/pkg/lib -lfltk_images -lpng16 -lz -ljpeg -lfltk -lXcursor -lXfixes -lXext -lXft -lfontconfig -lXinerama -lpthread -lm -lX11  " ;
+
+# dbus
+DBUS_CFLAGS ?= "-Wno-long-long -DDBUS_STATIC_BUILD -I/usr/pkg/include/dbus-1.0 -I/usr/pkg/lib/dbus-1.0/include" ;
+DBUS_LIBS   ?= "-L/usr/pkg/lib -ldbus-1" ;
+
+# for shared library
+SHARED ?= "0" ;
+
+# version string
+EDELIB_VERSION ?= "2.1.0" ;
+
+# xdgmime
+XDG_MIME_HAVE_MMAP ?= "" ;
+
+# flags for tinyscheme
+SCHEME_FLAGS ?= "" ;
+
+# dmalloc flags; explicit flags are added as dmalloc must be used
+# as last link statement
+DMALLOC_LIBC   ?= "" ;
+DMALLOC_LIBCXX ?= "" ;
+
+# check if we have Fl_Tree
+HAVE_FL_TREE ?= 1 ;
+
+# do not touch this
+JAMCONFIG_READ = "yes" ;

@@ -1,0 +1,155 @@
+#
+# $Id: Jamconfig.in 3544 2013-05-30 12:31:25Z karijes $
+#
+# Part of Equinox Desktop Environment (EDE).
+# Copyright (c) 2000-2007 EDE Authors.
+#
+# This program is licensed under terms of the 
+# GNU General Public License version 2 or newer.
+# See COPYING for details.
+
+# directories
+prefix      ?= "/usr/local" ;
+exec_prefix ?= "$(prefix)" ;
+datarootdir ?= "$(prefix)/share" ;
+bindir      ?= "$(exec_prefix)/bin" ;
+datadir     ?= "$(datarootdir)" ;
+docdir      ?= "$(datarootdir)/doc" ;
+includedir  ?= "$(prefix)/include" ;
+libdir      ?= "$(exec_prefix)/lib" ;
+mandir      ?= "$(datarootdir)/man" ;
+srcdir      ?= "/root/ede-2.1" ;
+sysconfdir  ?= "$(prefix)/etc" ;
+
+# compiler
+CC           = clang ;
+C++          = clang++ ;
+LINK         = $(CC) ;
+
+# tools used by jam rules
+XGETTEXT     ?=  ;
+MSGFMT       ?=  ;
+PYTHON       ?= /usr/pkg/bin/python ;
+RMDIR_UNSAFE ?= $(RM) -Rf ;
+RMDIR_SAFE   ?= rmdir ;
+CP           ?= cp ;
+COPYDIR      ?= "cp -R" ;
+MV           ?= mv ;
+MKDIRS       ?= "mkdir -p" ;
+LINKCMD      ?= "ln -s" ;
+
+EDE_VERSION ?= "2.1.0" ;
+
+# subdirectory in usual XDG paths; this directory is marked
+# as 'prefix' in some edelib classes, like Resource or Theme
+EDE_PREFIX_SUBDIR ?= "ede" ;
+
+# directories used by build system
+PREFIX                ?= "$(prefix)" ;
+EDE_BIN_DIR           ?= "$(bindir)" ;
+EDE_DATA_DIR          ?= "$(datadir)" ;
+EDE_CONFIG_DIR        ?= "$(sysconfdir)/xdg/$(EDE_PREFIX_SUBDIR)" ;
+EDE_MENU_DIR          ?= "$(sysconfdir)/xdg/menus" ; # use XDG default for menu dir
+EDE_ICON_DIR          ?= "$(EDE_DATA_DIR)/icons" ;
+EDE_MIME_DIR          ?= "$(EDE_DATA_DIR)/mime" ; # use XDG mime path
+EDE_WALLPAPERS_DIR    ?= "$(EDE_DATA_DIR)/wallpapers" ; # default path
+EDE_DOC_DIR           ?= "$(docdir)/ede-$(EDE_VERSION)" ;
+EDE_THEMES_DIR        ?= "$(EDE_DATA_DIR)/$(EDE_PREFIX_SUBDIR)/themes" ;
+EDE_TIPS_DIR          ?= "$(EDE_DATA_DIR)/$(EDE_PREFIX_SUBDIR)/tips" ;
+EDE_PANEL_APPLETS_DIR ?= "$(EDE_DATA_DIR)/$(EDE_PREFIX_SUBDIR)/panel-applets" ;
+
+DBUS_SERVICE_DIR      ?= "$(datarootdir)/dbus-1/services" ;
+XSESSIONS_DIR         ?= "$(datarootdir)/xsessions" ;
+
+PEKWM_CONFIG_DIR      ?= "$(sysconfdir)/pekwm" ;
+PEKWM_DATA_DIR        ?= "$(datadir)/pekwm" ;
+PEKWM_CXXFLAGS        ?= " -I/usr/pkg/include  -I/usr/X11R7/include -D_REENTRANT -I/usr/pkg/include/freetype2 -I/usr/X11R7/include -I/usr/X11R7/include/freetype2 -I/usr/X11R7/include -D_REENTRANT -I/usr/X11R7/include -I/usr/pkg/include/libpng16" ;
+PEKWM_LIBS            ?= " -L/usr/pkg/lib -liconv -lX11 -lXext  -L/usr/X11R7/lib  -L/usr/X11R7/lib -lXft -L/usr/X11R7/lib -lXrandr -L/usr/pkg/lib -lpng16" ;
+
+OPTIMFLAGS     ?=  ;
+DEBUGFLAGS     ?=  ;
+LARGEFILEFLAGS ?=  ;
+
+# FIXME: a quick hack to work everything on SunStudio
+if $(SUN_COMPILER) {
+	WALL          ?= "+w2" ;
+	PEDANTIC      ?= ;
+	WNO_LONG_LONG ?= ;
+} else {
+	# gcc assumed
+	WALL          ?= "-Wall" ;
+	# by default we do not use -pedantic; programs that use C libraries (HAL older versions) and eFLTK will fail 
+	# to compile with it
+	PEDANTIC      ?= ;
+	WNO_LONG_LONG ?= "-Wno-long-long" ;
+}
+
+# global flags used to be passed to every target
+GLOBALFLAGS ?= $(WALL) $(PEDANTIC) -DHAVE_CONFIG_H -I$(TOP) $(OPTIMFLAGS) $(DEBUGFLAGS) $(LARGEFILEFLAGS) ;
+STDLIB      ?= -lstdc++ ;
+LIBM        ?= -lm ;
+
+# Note that REMOVE_UNUSED_DEPENDENCIES_TRICK _does not_ works when
+# edelib is compiled as shared library (or when is linked with some shared library)
+#REMOVE_UNUSED_DEPENDENCIES_TRICK = 1 ;
+
+# edelib libraries path
+EDELIBINCLUDE                ?= -I/usr/local/include ;
+EDELIBLIB                    ?= -L/usr/local/lib -ledelib ;
+EDELIB_GUI_INCLUDE           ?= -O2 -march=i586 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT -I/usr/local/include -I/usr/pkg/include -I/usr/X11R7/include/freetype2 -I/usr/pkg/include -I/usr/X11R7/include -I/usr/X11R7/include/libdrm -I/usr/X11R7/include/freetype2 -I/usr/X11R7/include -I/usr/local/include ;
+EDELIB_GUI_LIB               ?= -L/usr/local/lib -L/usr/pkg/lib -L/usr/X11R7/lib -L/usr/local/lib -ledelib_gui -lfltk_images -lpng16 -lz -ljpeg -lfltk -lXcursor -lXfixes -lXext -lXft -lfontconfig -lXinerama -lpthread -lm -lX11 -ledelib ;
+EDELIB_GUI_NO_IMAGES_INCLUDE ?= -O2 -march=i586 -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT -I/usr/local/include -I/usr/pkg/include -I/usr/X11R7/include/freetype2 -I/usr/pkg/include -I/usr/X11R7/include -I/usr/X11R7/include/libdrm -I/usr/X11R7/include/freetype2 -I/usr/X11R7/include -I/usr/local/include ;
+EDELIB_GUI_NO_IMAGES_LIB     ?= -L/usr/local/lib -L/usr/pkg/lib -L/usr/X11R7/lib -L/usr/local/lib -ledelib_gui -lfltk -lXcursor -lXfixes -lXext -lXft -lfontconfig -lXinerama -lpthread -lm -lX11 -ledelib ;
+EDELIB_DBUS_INCLUDE          ?= -DDBUS_STATIC_BUILD -I/usr/local/include -I/usr/pkg/include/dbus-1.0 -I/usr/pkg/lib/dbus-1.0/include ;
+EDELIB_DBUS_LIB              ?= -L/usr/local/lib -L/usr/pkg/lib -ledelib_dbus -ledelib -ldbus-1 ;
+
+# fltk libraries path
+FLTKINCLUDE      ?= -I/usr/pkg/include -I/usr/X11R7/include/freetype2 -O2 -march=i586 -I/usr/pkg/include -I/usr/X11R7/include -I/usr/X11R7/include/libdrm -I/usr/X11R7/include/freetype2 -I/usr/X11R7/include -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT ;
+FLTKLIB          ?= -L/usr/pkg/lib -L/usr/X11R7/lib -L/usr/X11R7/lib -Wl,-R/usr/X11R7/lib -Wl,-R/usr/pkg/lib -lfltk_images -lpng16 -lz -ljpeg -lfltk -lXcursor -lXfixes -lXext -lXft -lfontconfig -lXinerama -lpthread -lm -lX11 ;
+FLTKLIB_NOIMAGES ?= -L/usr/pkg/lib -L/usr/X11R7/lib -L/usr/X11R7/lib -Wl,-R/usr/X11R7/lib -Wl,-R/usr/pkg/lib -lfltk -lXcursor -lXfixes -lXext -lXft -lfontconfig -lXinerama -lpthread -lm -lX11 ;
+
+# Xcomposite
+COMPOSITEINCLUDE ?= -D_REENTRANT -I/usr/X11R7/include ;
+COMPOSITELIB     ?= -L/usr/X11R7/lib -lXcomposite -lXdamage -lXfixes -lXext ;
+
+# HAL
+HALINCLUDE ?=  ;
+HALLIB     ?=  ;
+
+# startup-notification
+STARTUP_NOTIFICATION_INCLUDE ?=  ;
+STARTUP_NOTIFICATION_LIB     ?=  ;
+
+# X libraries (could be empty if are on standard paths)
+X_CFLAGS     ?=  -I/usr/X11R7/include ;
+X_LIBS       ?=  -L/usr/X11R7/lib ;
+X_PRE_LIBS   ?=  -lSM -lICE ;
+X_EXTRA_LIBS ?=  ;
+
+# solo XKB extension library
+XKB_LIBS ?=  -L/usr/X11R7/lib -lxkbfile ;
+
+# shape extension
+XSHAPE_LIBS ?=  ;
+
+# curl libraries
+CURL_CFLAGS  ?= -I/usr/pkg/include ;
+CURL_LIBS    ?= -L/usr/pkg/lib -Wl,-R/usr/pkg/lib -L/usr/pkg/lib -lcurl -lidn -lssl -lcrypto -L/usr/pkg/lib -lgssapi -lheimntlm -lkrb5 -lhx509 -lcom_err -lcrypto -lasn1 -lwind -lheimbase -lroken -lcrypt -lz ;
+
+# kstat
+KSTAT_LIBS ?=  ;
+
+# platform specific pthread flags
+# FIXME: a quick hack to work everything on SunStudio
+if $(SUN_COMPILER) {
+	PTHREAD_CFLAGS ?= ;
+	PTHREAD_LIBS   ?= -lpthread ;
+} else {
+	PTHREAD_CFLAGS ?= -I/usr/pkg/include ;
+	PTHREAD_LIBS   ?= -L/usr/pkg/lib -lpthread ;
+}
+
+# do not touch this
+JAMCONFIG_READ = "yes" ;
+# added by ../mk-ede-release.sh
+INSTALL_ICON_THEMES = 1 ;

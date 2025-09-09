@@ -1,0 +1,926 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 8.2.1" />
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: bold;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  border-bottom: 2px solid silver;
+  padding-top: 0.5em;
+}
+
+div.sectionbody {
+  font-family: sans-serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+span#email {
+}
+span#revision {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble,
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-right: 10%;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock {
+  margin-right: 0%;
+}
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock > div.content {
+  padding-left: 2.0em;
+}
+
+div.attribution {
+  text-align: right;
+}
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.verseblock div.content {
+  white-space: pre;
+}
+
+div.imageblock div.content { padding-left: 0; }
+div.imageblock img { border: 1px solid silver; }
+span.image img { border-style: none; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: italic;
+}
+dd > *:first-child {
+  margin-top: 0;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.olist2 {
+  list-style-type: lower-alpha;
+}
+
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+
+div.hlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hlist td {
+  padding-bottom: 5px;
+}
+td.hlist1 {
+  vertical-align: top;
+  font-style: italic;
+  padding-right: 0.8em;
+}
+td.hlist2 {
+  vertical-align: top;
+}
+
+@media print {
+  div#footer-badges { display: none; }
+}
+
+div#toctitle {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-content {
+  padding-left: 2.0em;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+
+/* IE6 sets dynamically generated links as visited. */
+div#toc a:visited { color: blue; }
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+window.onload = function(){generateToc(2)}
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, October 2006. License: GPL */
+
+function getText(el) {
+  var text = "";
+  for (var i = el.firstChild; i != null; i = i.nextSibling) {
+    if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+      text += i.data;
+    else if (i.firstChild != null)
+      text += getText(i);
+  }
+  return text;
+}
+
+function TocEntry(el, text, toclevel) {
+  this.element = el;
+  this.text = text;
+  this.toclevel = toclevel;
+}
+
+function tocEntries(el, toclevels) {
+  var result = new Array;
+  var re = new RegExp('[hH]([2-'+(toclevels+1)+'])');
+  // Function that scans the DOM tree for header elements (the DOM2
+  // nodeIterator API would be a better technique but not supported by all
+  // browsers).
+  var iterate = function (el) {
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+        var mo = re.exec(i.tagName)
+        if (mo)
+          result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+        iterate(i);
+      }
+    }
+  }
+  iterate(el);
+  return result;
+}
+
+// This function does the work. toclevels = 1..4.
+function generateToc(toclevels) {
+  var toc = document.getElementById("toc");
+  var entries = tocEntries(document.getElementsByTagName("body")[0], toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "toc" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+}
+/*]]>*/
+</script>
+<title>D-BUS usage in EDE</title>
+</head>
+<body>
+<div id="header">
+<h1>D-BUS usage in EDE</h1>
+<div id="toc">
+  <div id="toctitle">Table of Contents</div>
+  <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
+</div>
+</div>
+<h2>Introduction</h2>
+<div class="sectionbody">
+<p>This document describes <a href="http://freedesktop.org/wiki/Software/dbus/">D-BUS</a> usage in EDE applications.
+It is not meant to describe D-BUS protocol nor how to use it via libdbus nor edelib, but to document and
+explain what programs listen or what data are send via D-BUS protocol.</p>
+</div>
+<h2>Naming convention</h2>
+<div class="sectionbody">
+<p>EDE uses <em>org.equinoxproject</em> as main namespace for interfaces and object paths, e.g.</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>  org.equinoxproject.Desktop   # ede-desktop interface
+  /org/equinoxproject/Desktop  # ede-desktop object path</tt></pre>
+</div></div>
+<p>Rest of the name will be application name with method or signal name. If application name
+is not suitable or could not be represented as D-BUS name (or could be ambiguous), it can be replaced
+with applications functionality (<em>org.equinoxproject.Desktop</em> sounds much better than <em>org.equinoxproject.Ede_Desktop</em>).</p>
+<p>Sample:</p>
+<div class="listingblock">
+<div class="content">
+<pre><tt>  org.equinoxproject.Desktop.FooMethod   # FooMethod belongs to ede-desktop</tt></pre>
+</div></div>
+</div>
+<h2>Interfaces</h2>
+<div class="sectionbody">
+<h3>org.equinoxproject.Desktop</h3>
+<p>Used by ede-desktop and access object is <em>/org/eqiunoxproject/Desktop</em>. Provided signals are:</p>
+<h4>DesktopChanged(int32 n, string name)</h4>
+<div class="tableblock">
+<table rules="all"
+frame="hsides"
+cellspacing="0" cellpadding="4">
+<col width="114" />
+<col width="114" />
+<col width="194" />
+<thead>
+  <tr>
+    <th align="left">
+    Name
+    </th>
+    <th align="left">
+    Type
+    </th>
+    <th align="left">
+    Description
+    </th>
+  </tr>
+</thead>
+<tbody valign="top">
+  <tr>
+    <td align="left">
+    n
+    </td>
+    <td align="left">
+    int32
+    </td>
+    <td align="left">
+    Desktop number
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    name
+    </td>
+    <td align="left">
+    string
+    </td>
+    <td align="left">
+    Desktop name
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p>Notify when desktop view was changed.</p>
+<hr />
+<h3>org.equinoxproject.Emountd</h3>
+<p>Used by emountd and access object is <em>/org/equinoxproject/Emountd</em>. Provided
+signals are:</p>
+<h4>Mounted(struct device_info)</h4>
+<p><em>device_info</em> contains the following fields:</p>
+<div class="tableblock">
+<table rules="all"
+frame="hsides"
+cellspacing="0" cellpadding="4">
+<col width="182" />
+<col width="114" />
+<col width="411" />
+<thead>
+  <tr>
+    <th align="left">
+    Name
+    </th>
+    <th align="left">
+    Type
+    </th>
+    <th align="left">
+    Description
+    </th>
+  </tr>
+</thead>
+<tbody valign="top">
+  <tr>
+    <td align="left">
+    id
+    </td>
+    <td align="left">
+    uint32
+    </td>
+    <td align="left">
+    Device ID for easier tracking
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    label
+    </td>
+    <td align="left">
+    string
+    </td>
+    <td align="left">
+    Device label (can be empty)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    mount_point
+    </td>
+    <td align="left">
+    string
+    </td>
+    <td align="left">
+    Device mount point
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    device_file
+    </td>
+    <td align="left">
+    string
+    </td>
+    <td align="left">
+    Device file
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    drive_type
+    </td>
+    <td align="left">
+    int32
+    </td>
+    <td align="left">
+    Drive type (see <a href="#X1">Drive types</a>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    cdrom_type
+    </td>
+    <td align="left">
+    int32
+    </td>
+    <td align="left">
+    CDROM type, valid only if <em>drive_type == DRIVE_TYPE_CDROM</em> (see <a href="#X2">Volume disc types</a>)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    read_only
+    </td>
+    <td align="left">
+    bool
+    </td>
+    <td align="left">
+    Is device mounted read-only
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p>Notify when storage device was mounted.</p>
+<h4>Unmounted(int32 udi)</h4>
+<div class="tableblock">
+<table rules="all"
+frame="hsides"
+cellspacing="0" cellpadding="4">
+<col width="114" />
+<col width="114" />
+<col width="194" />
+<thead>
+  <tr>
+    <th align="left">
+    Name
+    </th>
+    <th align="left">
+    Type
+    </th>
+    <th align="left">
+    Description
+    </th>
+  </tr>
+</thead>
+<tbody valign="top">
+  <tr>
+    <td align="left">
+    id
+    </td>
+    <td align="left">
+    int32
+    </td>
+    <td align="left">
+    Device ID for easier tracking
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p>Notify when storage device was unmounted.</p>
+<h4>AudioCDAdded(struct audio_device_info)</h4>
+<p><em>audio_device_info</em> contains the following fields:</p>
+<div class="tableblock">
+<table rules="all"
+frame="hsides"
+cellspacing="0" cellpadding="4">
+<col width="182" />
+<col width="114" />
+<col width="411" />
+<thead>
+  <tr>
+    <th align="left">
+    Name
+    </th>
+    <th align="left">
+    Type
+    </th>
+    <th align="left">
+    Description
+    </th>
+  </tr>
+</thead>
+<tbody valign="top">
+  <tr>
+    <td align="left">
+    id
+    </td>
+    <td align="left">
+    uint32
+    </td>
+    <td align="left">
+    Device ID for easier tracking
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    label
+    </td>
+    <td align="left">
+    string
+    </td>
+    <td align="left">
+    Device label (can be empty)
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    device_file
+    </td>
+    <td align="left">
+    string
+    </td>
+    <td align="left">
+    Device file
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p>Notify when Audio CD was added.</p>
+<h4>AudioCDRemoved(int32 udi)</h4>
+<div class="tableblock">
+<table rules="all"
+frame="hsides"
+cellspacing="0" cellpadding="4">
+<col width="114" />
+<col width="114" />
+<col width="194" />
+<thead>
+  <tr>
+    <th align="left">
+    Name
+    </th>
+    <th align="left">
+    Type
+    </th>
+    <th align="left">
+    Description
+    </th>
+  </tr>
+</thead>
+<tbody valign="top">
+  <tr>
+    <td align="left">
+    id
+    </td>
+    <td align="left">
+    int32
+    </td>
+    <td align="left">
+    Device ID for easier tracking
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<p>Notify when Audio CD was removed.</p>
+<p>Device enumerations directly maps to HAL ones and those values
+are send in <em>drive_type</em> and <em>cdrom_type</em> (device_info struct).</p>
+<p><a id="X1"></a><strong>Drive types:</strong></p>
+<div class="listingblock">
+<div class="content">
+<pre><tt> DRIVE_TYPE_REMOVABLE_DISK        = 0x00
+ DRIVE_TYPE_DISK                  = 0x01
+ DRIVE_TYPE_CDROM                 = 0x02
+ DRIVE_TYPE_FLOPPY                = 0x03
+ DRIVE_TYPE_TAPE                  = 0x04
+ DRIVE_TYPE_COMPACT_FLASH         = 0x05
+ DRIVE_TYPE_MEMORY_STICK          = 0x06
+ DRIVE_TYPE_SMART_MEDIA           = 0x07
+ DRIVE_TYPE_SD_MMC                = 0x08
+ DRIVE_TYPE_CAMERA                = 0x09
+ DRIVE_TYPE_PORTABLE_AUDIO_PLAYER = 0x0a
+ DRIVE_TYPE_ZIP                   = 0x0b
+ DRIVE_TYPE_JAZ                   = 0x0c
+ DRIVE_TYPE_FLASHKEY              = 0x0d
+ DRIVE_TYPE_MO                    = 0x0e</tt></pre>
+</div></div>
+<p><a id="X2"></a><strong>Volume disc types:</strong></p>
+<div class="listingblock">
+<div class="content">
+<pre><tt> VOLUME_DISC_TYPE_CDROM       = 0x00
+ VOLUME_DISC_TYPE_CDR         = 0x01
+ VOLUME_DISC_TYPE_CDRW        = 0x02
+ VOLUME_DISC_TYPE_DVDROM      = 0x03
+ VOLUME_DISC_TYPE_DVDRAM      = 0x04
+ VOLUME_DISC_TYPE_DVDR        = 0x05
+ VOLUME_DISC_TYPE_DVDRW       = 0x06
+ VOLUME_DISC_TYPE_DVDPLUSR    = 0x07
+ VOLUME_DISC_TYPE_DVDPLUSRW   = 0x08
+ VOLUME_DISC_TYPE_DVDPLUSR_DL = 0x09
+ VOLUME_DISC_TYPE_BDROM       = 0x0a
+ VOLUME_DISC_TYPE_BDR         = 0x0b
+ VOLUME_DISC_TYPE_BDRE        = 0x0c
+ VOLUME_DISC_TYPE_HDDVDROM    = 0x0d
+ VOLUME_DISC_TYPE_HDDVDR      = 0x0e
+ VOLUME_DISC_TYPE_HDDVDRW     = 0x0f
+ VOLUME_DISC_TYPE_MO          = 0x10</tt></pre>
+</div></div>
+<h3>org.equinoxproject.Shutdown</h3>
+<p>A general signal emitted when EDE is starting to shut down.</p>
+<h4>Shutdown()</h4>
+<p>The only member of <em>org.equinoxproject.Shutdown</em> signal.</p>
+<h3>org.equinoxproject.Xsettings</h3>
+<p>This service path exposes XSETTINGS registry. Object path for access
+service methods is <em>/org/equinoxproject/Xsettings</em> and interface is <em>org.equinoxproject.Xsettings</em>.</p>
+<h4>GetAll()</h4>
+<p>Returns array of all known keys hold by XSETTINGS manager. Each array item is string type.</p>
+<h4>GetType(string key)</h4>
+<p>Returns type of the given key. As XSETTINGS knows only three types (int, string and color), returned
+value will be string holding type name.</p>
+<div class="tableblock">
+<table rules="all"
+frame="hsides"
+cellspacing="0" cellpadding="4">
+<col width="114" />
+<col width="114" />
+<col width="194" />
+<thead>
+  <tr>
+    <th align="left">
+    Name
+    </th>
+    <th align="left">
+    Type
+    </th>
+    <th align="left">
+    Description
+    </th>
+  </tr>
+</thead>
+<tbody valign="top">
+  <tr>
+    <td align="left">
+    key
+    </td>
+    <td align="left">
+    string
+    </td>
+    <td align="left">
+    Key name
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<h4>GetValue(string key)</h4>
+<p>Returns value given key holds. Value can be int32, string or array, depending whay type key is.
+Array will be returned when key holds color type and array will represent RGBA, where
+each element holds int32 type.</p>
+<div class="tableblock">
+<table rules="all"
+frame="hsides"
+cellspacing="0" cellpadding="4">
+<col width="114" />
+<col width="114" />
+<col width="194" />
+<thead>
+  <tr>
+    <th align="left">
+    Name
+    </th>
+    <th align="left">
+    Type
+    </th>
+    <th align="left">
+    Description
+    </th>
+  </tr>
+</thead>
+<tbody valign="top">
+  <tr>
+    <td align="left">
+    key
+    </td>
+    <td align="left">
+    string
+    </td>
+    <td align="left">
+    Key name
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<h4>Remove(string key)</h4>
+<p>Removes given key from XSETTINGS registry. If key wasn't found, the function will do nothing.</p>
+<div class="tableblock">
+<table rules="all"
+frame="hsides"
+cellspacing="0" cellpadding="4">
+<col width="114" />
+<col width="114" />
+<col width="194" />
+<thead>
+  <tr>
+    <th align="left">
+    Name
+    </th>
+    <th align="left">
+    Type
+    </th>
+    <th align="left">
+    Description
+    </th>
+  </tr>
+</thead>
+<tbody valign="top">
+  <tr>
+    <td align="left">
+    key
+    </td>
+    <td align="left">
+    string
+    </td>
+    <td align="left">
+    Key name
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+<h4>Flush()</h4>
+<p>Force XSETTINGS manager to store data on disk. This is usually done by manager when exits.</p>
+<h4>Set(string key, type value)</h4>
+<p>Set key to given value. Here, value can be int32, string or array (4 int32 elements, representing RGBA)
+and set value will automatically set key value type. Returns true if done successfully or false if not.</p>
+<div class="tableblock">
+<table rules="all"
+frame="hsides"
+cellspacing="0" cellpadding="4">
+<col width="114" />
+<col width="354" />
+<col width="251" />
+<thead>
+  <tr>
+    <th align="left">
+    Name
+    </th>
+    <th align="left">
+    Type
+    </th>
+    <th align="left">
+    Description
+    </th>
+  </tr>
+</thead>
+<tbody valign="top">
+  <tr>
+    <td align="left">
+    key
+    </td>
+    <td align="left">
+    string
+    </td>
+    <td align="left">
+    Key name
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+    value
+    </td>
+    <td align="left">
+    int32, string or int32 array
+    </td>
+    <td align="left">
+    Value key will hold
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 08-Sep-2025 12:57:56 PDT
+</div>
+<div id="footer-badges">
+EDE 2.1.0 manual
+</div>
+</div>
+</body>
+</html>

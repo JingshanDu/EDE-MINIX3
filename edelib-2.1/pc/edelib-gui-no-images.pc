@@ -1,0 +1,11 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: edelib-gui
+Description: EDE GUI library
+Version: 2.1.0
+Requires: edelib
+Libs: -L${libdir} -ledelib_gui -L/usr/pkg/lib -L/usr/X11R7/lib -L/usr/X11R7/lib -Wl,-R/usr/X11R7/lib -Wl,-R/usr/pkg/lib -lfltk -lXcursor -lXfixes -lXext -lXft -lfontconfig -lXinerama -lpthread -lm -lX11  
+Cflags: -I${includedir} -I/usr/pkg/include -I/usr/X11R7/include/freetype2 -O2 -march=i586 -I/usr/pkg/include -I/usr/X11R7/include -I/usr/X11R7/include/libdrm -I/usr/X11R7/include/freetype2 -I/usr/X11R7/include -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_THREAD_SAFE -D_REENTRANT
